@@ -16,3 +16,22 @@ navegação:
 npm install @react-navigation/native
 npx expo install react-native-screens react-native-safe-area-context
 npm install @react-navigation/native-stack
+
+imagem picker
+npx expo install expo-image-picker
+em app.json para permissão
+{
+  "expo": {
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ]
+    ]
+  }
+}
+ 
+par limitar o tamanho dos dados
+npx expo install expo-file-system
