@@ -35,3 +35,7 @@ em app.json para permissão
  
 par limitar o tamanho dos dados
 npx expo install expo-file-system
+
+Formulários
+npm install react-hook-form
+npm install @hookform/resolvers yup
