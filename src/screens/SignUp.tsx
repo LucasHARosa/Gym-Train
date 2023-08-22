@@ -1,19 +1,19 @@
-import { VStack, Image, Text, Center, Heading, ScrollView } from "native-base";
+import { Alert } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
+import { VStack, Image, Text, Center, Heading, ScrollView, useToast } from "native-base";
+import { useForm, Controller } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import { api } from "@services/api";
 
 import LogoSvg from '@assets/logo.svg';
 import BackgroundImg from '@assets/background.png';
 
+import { AppError } from '@utils/AppError';
+
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
-import { useNavigation } from "@react-navigation/native";
-
-import { api } from "@services/api";
-
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Controller, useForm } from "react-hook-form";
-import axios from "axios";
-import { Alert } from "react-native";
 
 type FormDataProps = {
   name: string;
@@ -21,35 +21,40 @@ type FormDataProps = {
   password: string;
   password_confirm: string;
 }
-
 const signUpSchema = yup.object({
-  name: yup.string().required('Informe o nome'),
-  email: yup.string().required('Informe o e-mail').email('E-mail inválido'),
+  name: yup.string().required('Informe o nome.'),
+  email: yup.string().required('Informe o e-mail').email('E-mail inválido.'),
   password: yup.string().required('Informe a senha').min(6, 'A senha deve ter pelo menos 6 dígitos.'),
-  password_confirm: yup.string().required('Confirme a senha.').oneOf([yup.ref('password'), ''], 'A confirmação da senha não confere')
+  password_confirm: yup.string().required('Confirme a senha.').oneOf([yup.ref('password'), ""], 'A confirmação da senha não confere')
 });
 
 export function SignUp() {
-  
-  const navigation = useNavigation();
+
+  const toast = useToast();
+
   const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({
     resolver: yupResolver(signUpSchema),
   });
-  
-  async function handleSignUp({ name, email, password }: FormDataProps) {
-    try {
-      const response = await api.post('/users', { name, email, password });
-      console.log(response.data);
-    } catch (error) {
-      if(axios.isAxiosError(error)) {
-        Alert.alert(error.response?.data.message);
-      }
-    }
-  }
-  
-
+  const navigation = useNavigation();
   function handleGoBack() {
     navigation.goBack();
+  }
+  async function handleSignUp(data: FormDataProps) {
+    try {
+      console.log("vim aqui")
+      const response = await fetch('http://localhost:3333/users', {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({name: data.name, email: data.email, password: data.password}),
+    })
+
+      console.log('usuário cadastrado')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -62,20 +67,16 @@ export function SignUp() {
           resizeMode="contain"
           position="absolute"
         />
-
         <Center my={24}>
           <LogoSvg />
-
           <Text color="gray.100" fontSize="sm">
             Treine sua mente e o seu corpo.
           </Text>
         </Center>
-
         <Center>
           <Heading color="gray.100" fontSize="xl" mb={6} fontFamily="heading">
             Crie sua conta
           </Heading>
-
           <Controller 
             control={control}
             name="name"
@@ -88,7 +89,6 @@ export function SignUp() {
               />
             )}
           />
-          
           <Controller 
             control={control}
             name="email"
@@ -103,7 +103,7 @@ export function SignUp() {
               />
             )}
           />
-         
+          
           <Controller 
             control={control}
             name="password"
@@ -117,7 +117,6 @@ export function SignUp() {
               />
             )}
           />
-
           <Controller 
             control={control}
             name="password_confirm"
@@ -133,13 +132,12 @@ export function SignUp() {
               />
             )}
           />
-
           <Button 
-          title="Criar e acessar"
-          onPress={handleSubmit(handleSignUp)}
-           />
+            title="Criar e acessar" 
+            onPress={handleSubmit(handleSignUp)}
+          />
         </Center>
-
+        
         <Button 
           title="Voltar para o login" 
           variant="outline" 
