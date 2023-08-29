@@ -39,21 +39,21 @@ export function SignUp() {
   function handleGoBack() {
     navigation.goBack();
   }
-  async function handleSignUp(data: FormDataProps) {
+  async function handleSignUp({ name, email, password }: FormDataProps) {
+    //console.log("vim aqui")
     try {
-      console.log("vim aqui")
-      const response = await fetch('http://localhost:3333/users', {
-      method: 'POST',
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({name: data.name, email: data.email, password: data.password}),
-    })
-
-      console.log('usuário cadastrado')
+      const response = await api.post('/users', { name, email, password });
+      console.log(response.data);
     } catch (error) {
-      console.log(error)
+      const isAppError = error instanceof AppError;
+      console.log(error);
+      const title = isAppError ? error.message : 'Não foi possível criar a conta. Tente novamente mais tarde';
+
+      toast.show({
+        title,
+        placement: 'top',
+        bgColor: 'red.500'
+      })
     }
   }
 
