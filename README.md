@@ -9,9 +9,11 @@ Aplicação mobile em React Native usando o native base que simula uma ficha de 
 
 ## Telas:
 <p align="center">
-    <img height="400" src="./Imagens/Screenshot_20230714-111430.png" alt="">
-    <img height="400" src="./Imagens/Screenshot_20230714-111451.png" alt="">
-    <img height="400" src="./Imagens/Screenshot_20230714-111439.png" alt="">
+    <img height="400" src="./imagens/IMG_2012.PNG" alt="">
+    <img height="400" src="./imagens/IMG_2014.PNG" alt="">
+    <img height="400" src="./imagens/IMG_2015.PNG" alt="">
+    <img height="400" src="./imagens/IMG_2016.PNG" alt="">
+    <img height="400" src="./imagens/IMG_2017.PNG" alt="">
     
 </p>
 
@@ -27,7 +29,7 @@ As funcionalidades possíveis na aplicação, que são:
 
 
 <p align="center">
-    <img height="400" src="./Imagens/Media_230714_112710.gif" alt="">
+    <img height="400" src="./imagens/GMP_U2F2ZUdIMDE=.GIF" alt="">
 </p>
 
 <div align="center">
