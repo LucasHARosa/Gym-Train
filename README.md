@@ -1,7 +1,7 @@
-![GitHub repo size](https://img.shields.io/github/repo-size/LucasHARosa/gym_train)
-![GitHub language count](https://img.shields.io/github/languages/count/LucasHARosa/gym_train)
-![GitHub top language](https://img.shields.io/github/languages/top/LucasHARosa/gym_train)
-![GitHub last commit](https://img.shields.io/github/last-commit/LucasHARosa/gym_train)
+![GitHub repo size](https://img.shields.io/github/repo-size/LucasHARosa/Gym-Train)
+![GitHub language count](https://img.shields.io/github/languages/count/LucasHARosa/Gym-Train)
+![GitHub top language](https://img.shields.io/github/languages/top/LucasHARosa/Gym-Train)
+![GitHub last commit](https://img.shields.io/github/last-commit/LucasHARosa/Gym-Train)
 # App - Gym Train
 
 Aplicação mobile em React Native usando o native base que simula uma ficha de treino na academia. O app conta com uma API para a realização de todas as requisições 
